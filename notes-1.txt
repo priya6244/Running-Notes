@@ -1,1 +1,166 @@
 Hi
+----------------
+Module development
+----------------------
+Functions -> we can call a function infinite times. It will give inputs and give us outputs
+
+Write the code only once and call them many times -> Modules
+
+Modules -> resource definition and arguemnts are same, only values are different
+
+create one repo -> terraform-aws-ec2
+
+ec2-module-demo -> here we use code in above folder by using module keyword
+
+--------------------------------------------------
+Provider will not be there in module
+
+It will be in the file in while we refer the module
+Provider will be present in the file where we call the module
+
+
+We need to write a readme.md file in which we have to specify the mandatory, optional inputs and we only should write down the what are the outputs we get by using our specific module
+
+We also can restrict the users on what inputs they can able to given
+
+Advantages of using modules
+----------------------------
+Code reuse
+updates are easy and centralised
+best practices can be enforced
+We can restrict the user using few options as per project standards
+
+VPC-> Virtual Private Cloud
+We do have data centers for every company in earlier days. Now a days less companies are mantaining own data centers.
+
+Datacenters means locating all servers in one place.
+
+Data centers are directly connected to Internet connection 
+
+For example our business is taking restaurant orders
+
+Needed:
+physical space
+buy servers
+power connection
+network connection
+cooling
+OS resources
+Maintenance
+
+We can make all these things by using cloud resource with cloud account
+
+Keeping all these in cloud means it is an isolated datacenter in cloud. 
+
+Resources created inside vpc is completely private
+
+For villages pin codes are unique for every villages
+
+Home -> House no.
+
+vpc -> name, cidr
+we do have some subnets
+Private subnet, public subnet
+
+In a village we have
+Main entrance -> Public Relations -> Ministry -> PMO
+
+Village name, pincode -> VPC name, cidr
+Street name, number -> subnets name, cidr
+Roads -> Route
+Main road -> Internet connection, Internet gateway
+Main gate of house -> Security group/firewall
+House -> server
+
+subnets are nothing but divisions
+
+VPC -> expense
+CIDR -> Classless InterDomain Routing
+
+192.178.3.4 -> 4 octates
+255.255.255.255 -> Max IP
+10.0.0.0/16 -> cidr
+
+Total IP address bits are 32. Possible IP addresses are 2^32
+
+10.0.0.0/16 -> 1st 2 octates are blocked
+
+10.0.0.1
+10.0.0.2
+.
+.
+.
+10.0.0.255
+
+10.0.1.0
+10.0.2.0
+.
+.
+10.0.255.0
+
+2^16 => 65,536
+
+Creating subnets-> expense-public and expense-private
+
+10.0.0.0/24 -> 1st 3 octates blocked
+
+10.0.0.1
+.
+.
+10.0.0.255
+Subnets possible
+10.0.1.0/24 -> 10.0.1.0/24...10.0.255.0/24
+10.0.2.0/24
+
+10.0.1.0/24 -> public subnet
+10.0.2.0/24 -> private subnet
+10.0.3.0/24 -> database subnet
+
+Internet gatway -> igw
+
+Route table -> expense-public
+
+Public route table will be linked with igw
+
+public vs private subnet
+
+subnet which has internet connection is called as public subnet. Private subnet will not have internet connection
+
+database subnet is also called as private subnet
+
+create route tables for expense-private subnet and database subnet
+
+10.0.0.0/16 -> Internal roads
+
+Private route tables have to be linked with private subnets
+
+create vpc
+create igw and associate with vpc
+create public, private and database subnets
+create public, private and database route tables
+create routes inside the route table
+associate route tables with appropriate subnets
+create elastic IP
+create NAT gateway
+add NAT routes in private and database subnets
+
+
+secure servers can not be reached directly to the public. this is incoming traffic/ingress
+
+traffic from the servers -> outgoing traffic/egress
+
+yum install nginx or mysql-server -> outgoing traffic
+we are calling yum here
+
+NAT gatway -> mechanism in which private servers connects to internet for outgoing traffic like packages installation, security patches downloads
+
+Create elastic Ip
+Create NAT gatway -> select public subnet -> attach elastic IP
+
+NAT -> when server stops and starts IP address will change
+
+NAT gateway should have same IP address that is called static IP/elastic IP
+
+Private subnets should have route to connect with NAT gateway to reach Internet
+
+Edit private route tables by connecting it to NAT gateway target to reach Internet
