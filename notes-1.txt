@@ -48,6 +48,7 @@ cooling
 OS resources
 Maintenance
 
+
 We can make all these things by using cloud resource with cloud account
 
 Keeping all these in cloud means it is an isolated datacenter in cloud. 
